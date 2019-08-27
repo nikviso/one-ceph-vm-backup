@@ -123,6 +123,7 @@ end
 image_id = get_image_id(image_pool,'debian-test-rpc')
 puts image_id
 
+#image = Image.new(Image.build_xml(),client)
 #rc = image.allocate(template_image,101)
 
 image = Image.new(Image.build_xml(image_id),client)

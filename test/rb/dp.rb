@@ -11,3 +11,14 @@ def get_image_id(image_pool,image_name)
      end
    end
 end
+
+def get_image_pool(client)
+   image_pool = ImagePool.new(client, -1)
+   rc = image_pool.info
+   if OpenNebula.is_error?(rc)
+        puts rc.message
+        exit -1
+   else
+      return image_pool  
+   end
+end
