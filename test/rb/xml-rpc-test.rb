@@ -62,7 +62,7 @@ def disk_parse_XML(xml,client)
 #          image_id = get_image_id(get_image_pool(client),image_name)
 #          image = Image.new(Image.build_xml(image_id),client)
           image.persistent
-	      puts "Has been allocated IMAGE NAME \"#{image_name}\" by ID:#{image.id.to_s}"
+          puts "Has been allocated IMAGE NAME \"#{image_name}\" by ID:#{image.id.to_s}"
        else
           puts "Error allocating a new image. NAME \"#{image_name}\" is already taken by IMAGE ID #{image_id}."
 	      exit -1 
