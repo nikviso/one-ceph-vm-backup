@@ -86,37 +86,37 @@ end
 
 def futures_parse_XML(xml)
     @template_vm = @template_vm + "FEATURES = [\n  ACPI = \"#{xml.xpath("//VM//TEMPLATE//FEATURES//ACPI").text}\""
-	@template_vm = @template_vm + " ]\n"    	
+    @template_vm = @template_vm + " ]\n"    	
 end
 
 def graphics_parse_XML(xml)
     @template_vm = @template_vm + "GRAPHICS = [\n  LISTEN = \"#{xml.xpath("//VM//TEMPLATE//GRAPHICS//LISTEN").text}\",\n"
     @template_vm = @template_vm + "  TYPE = \"#{xml.xpath("//VM//TEMPLATE//GRAPHICS/TYPE").text}\""
-	@template_vm = @template_vm + " ]\n"    	
+    @template_vm = @template_vm + " ]\n"    	
 end
 
 def user_template_parse_XML(xml)
-	@template_vm = @template_vm + "HYPERVISOR = \"#{xml.xpath("//VM//USER_TEMPLATE//HYPERVISOR").text}\"\n"
-	@template_vm = @template_vm + "INPUTS_ORDER = \"#{xml.xpath("//VM//USER_TEMPLATE/INPUTS_ORDER").text}\"\n"
+    @template_vm = @template_vm + "HYPERVISOR = \"#{xml.xpath("//VM//USER_TEMPLATE//HYPERVISOR").text}\"\n"
+    @template_vm = @template_vm + "INPUTS_ORDER = \"#{xml.xpath("//VM//USER_TEMPLATE/INPUTS_ORDER").text}\"\n"
     @template_vm = @template_vm + "LOGO = \"#{xml.xpath("//VM//USER_TEMPLATE//LOGO").text}\"\n"	
     @template_vm = @template_vm + "MEMORY_UNIT_COST = \"#{xml.xpath("//VM//USER_TEMPLATE//MEMORY_UNIT_COST").text}\"\n"
     @template_vm = @template_vm + "USER_INPUTS = [\n  MEMORY = \"#{xml.xpath("//VM//USER_TEMPLATE//USER_INPUTS//MEMORY").text}\""
-	@template_vm = @template_vm + " ]\n"    	
+    @template_vm = @template_vm + " ]\n"    	
 end
 
 def nic_parse_XML(xml)
     @template_vm = @template_vm + "NIC = [\n  NETWORK = \"#{xml.xpath("//VM//TEMPLATE//NIC//NETWORK").text}\",\n"
 #    @template_vm = @template_vm + "  MAC = \"#{xml.xpath("//VM//TEMPLATE//NIC//MAC").text}\",\n"
-	@template_vm = @template_vm + "  NETWORK_UNAME = \"#{xml.xpath("//VM//TEMPLATE//NIC//NETWORK_UNAME").text}\",\n"
-	@template_vm = @template_vm + "  SECURITY_GROUPS = \"#{xml.xpath("//VM//TEMPLATE//NIC//SECURITY_GROUPS").text}\""
-	@template_vm = @template_vm + " ]\n"
+    @template_vm = @template_vm + "  NETWORK_UNAME = \"#{xml.xpath("//VM//TEMPLATE//NIC//NETWORK_UNAME").text}\",\n"
+    @template_vm = @template_vm + "  SECURITY_GROUPS = \"#{xml.xpath("//VM//TEMPLATE//NIC//SECURITY_GROUPS").text}\""
+    @template_vm = @template_vm + " ]\n"
 end
 
 def os_parse_XML(xml)    
     @template_vm = @template_vm + "OS = [\n  ARCH =  = \"#{xml.xpath("//VM//TEMPLATE/OS/ARCH").text}\",\n"
     @template_vm = @template_vm + "  BOOT =  = \"#{xml.xpath("//VM//TEMPLATE//OS//BOOT").text}\",\n"
     @template_vm = @template_vm + "  MACHINE =  = \"#{xml.xpath("//VM//TEMPLATE//OS//MACHINE").text}\""
-	@template_vm = @template_vm + " ]\n"	
+    @template_vm = @template_vm + " ]\n"	
 end
 
 @template_vm = "NAME = \"#{xml.at_xpath("//VM//NAME").text}\"\n"
