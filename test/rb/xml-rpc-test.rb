@@ -65,7 +65,7 @@ def disk_parse_XML(xml,client)
 		  puts "Has been allocated IMAGE NAME \"#{image_name}\" by ID:#{image.id.to_s}"
        else
           puts "Error allocating a new image. NAME \"#{image_name}\" is already taken by IMAGE ID #{image_id}."
-#	      exit -1 
+	      exit -1 
        end 
      else
        puts "Disk \"#{image_name}\" is NONPERSISTENT"
@@ -130,8 +130,9 @@ nic_parse_XML(xml)
 os_parse_XML(xml)
 @template_vm = @template_vm + "MEMORY =  = \"#{xml.xpath("//VM//TEMPLATE//MEMORY").text}\"\n"
 
-puts @template_vm
 =begin
+puts @template_vm
+=end
 vm  = VirtualMachine.new(VirtualMachine.build_xml, client)
 rc = vm.allocate(@template_vm)
 if OpenNebula.is_error?(rc)
@@ -140,6 +141,6 @@ if OpenNebula.is_error?(rc)
 else
     puts "Has been allocated VM by ID: #{vm.id.to_s}"
 end
-=end
+
 
 exit 0
