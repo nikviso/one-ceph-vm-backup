@@ -65,7 +65,7 @@ def disk_parse_XML(xml,client)
           puts "Has been allocated IMAGE NAME \"#{image_name}\" by ID:#{image.id.to_s}"
        else
           puts "Error allocating a new image. NAME \"#{image_name}\" is already taken by IMAGE ID #{image_id}."
-	      exit -1 
+          exit -1 
        end 
      else
        puts "Disk \"#{image_name}\" is NONPERSISTENT"
