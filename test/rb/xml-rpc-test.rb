@@ -79,8 +79,8 @@ def disk_parse_XML(xml,client)
      @template_vm = @template_vm + "DISK = [\n  IMAGE = \"#{image_name}\""
      if persistent != ""
       @template_vm = @template_vm + ",\n  PERSISTENT = \"#{persistent}\""
-	 end	
-	 @template_vm = @template_vm + " ]\n"	
+     end	
+     @template_vm = @template_vm + " ]\n"	
    }
 end
 
