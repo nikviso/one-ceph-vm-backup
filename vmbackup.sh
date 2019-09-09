@@ -218,7 +218,7 @@ for VM_ELEMENT in "${VM_LIST[@]}"; do
 
   if [[ $LCM_STATE = "RUNNING" ]]; then
     onevm resume $VMID;
-	if [ $LOG_FILE_IN ]; then
+    if [ $LOG_FILE_IN ]; then
       echo "["$(date +"%F-%T")"] Resume VM ID" $VMID" ." >> $LOG_FILE;	  
     else
       if [ $VERBOSE ]; then echo "["$(date +"%F-%T")"] Resume VM ID" $VMID"."; fi
