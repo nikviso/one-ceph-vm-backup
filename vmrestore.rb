@@ -43,9 +43,17 @@ OptionParser.new do |opts|
   
 end.parse!
 
+
+
+if($backup_path != nil)
+    TEMPLATE = File.read($backup_path + "/vm.xml") 
+else
+    puts "Path to backup directory is empty"
+	exit -1	
+end
+
 client = Client.new(CREDENTIALS, ENDPOINT)
 
-TEMPLATE = File.read($backup_path + "/vm.xml") 
 xml = Nokogiri::XML(TEMPLATE)
 
 def context_parse_XML(xml)
@@ -128,6 +136,11 @@ end
 def nic_parse_XML(xml)
     $template_vm = $template_vm + "NIC = [\n  NETWORK = \"#{xml.xpath("//VM//TEMPLATE//NIC//NETWORK").text}\",\n"
 #    $template_vm = $template_vm + "  MAC = \"#{xml.xpath("//VM//TEMPLATE//NIC//MAC").text}\",\n"
+    $template_vm = $template_vm + "  DNS = \"#{xml.xpath("//VM//TEMPLATE//NIC//DNS").text}\",\n"
+    $template_vm = $template_vm + "  GATEWAY = \"#{xml.xpath("//VM//TEMPLATE//NIC//GATEWAY").text}\",\n"
+    $template_vm = $template_vm + "  IP = \"#{xml.xpath("//VM//TEMPLATE//NIC//IP").text}\",\n"
+    $template_vm = $template_vm + "  NETWORK_ADDRESS = \"#{xml.xpath("//VM//TEMPLATE//NIC//NETWORK_ADDRESS").text}\",\n"
+    $template_vm = $template_vm + "  NETWORK_MASK = \"#{xml.xpath("//VM//TEMPLATE//NIC//NETWORK_MASK").text}\",\n"
     $template_vm = $template_vm + "  NETWORK_UNAME = \"#{xml.xpath("//VM//TEMPLATE//NIC//NETWORK_UNAME").text}\",\n"
     $template_vm = $template_vm + "  SECURITY_GROUPS = \"#{xml.xpath("//VM//TEMPLATE//NIC//SECURITY_GROUPS").text}\""
     $template_vm = $template_vm + " ]\n"
@@ -150,7 +163,7 @@ end
 vm_id = vm_pool.retrieve_elements('//VM//ID')
 #puts vm_id[0]
 
-if (!vm_id)
+if (vm_id == nil)
     $template_vm = "NAME = \"#{vm_name}\"\n"
     context_parse_XML(xml)
     cpu_parse_XML(xml)
