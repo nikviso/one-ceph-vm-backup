@@ -185,6 +185,25 @@ for VM_ELEMENT in "${VM_LIST[@]}"; do
     fi
 
   done < $BAKUP_PATH/$VMNAME/$VMID/$NOW/vm.xml;
+ 
+  LCM_STATE=$(onevm show $VMID | sed 's/ //g' | grep LCM_STATE: | sed 's/LCM_STATE://;s/"//g;')
+  if [[ $LCM_STATE = "RUNNING" ]]; then
+    onevm suspend $VMID;
+    while true
+    do
+      VM_STATE=$(onevm show $VMID | sed 's/ //g' | grep STATE: | grep -v LCM_STATE: | sed 's/STATE://;s/"//g;')
+      if [[ $VM_STATE = "SUSPENDED" ]]; then
+       break
+      else
+       if [ $LOG_FILE_IN ]; then
+         echo "["$(date +"%F-%T")"] Suspending VM ID" $VMID" ." >> $LOG_FILE;	  
+       else
+         if [ $VERBOSE ]; then echo "["$(date +"%F-%T")"] Suspending VM ID" $VMID"."; fi
+       fi
+       sleep 1
+      fi
+    done
+  fi
 
   for DISK_ELEMENT in ${DISK_LIST[@]}; do
     while read SNAP; do 
@@ -196,7 +215,16 @@ for VM_ELEMENT in "${VM_LIST[@]}"; do
      rbd snap create $SNAP;
     done <<< $(echo $DISK_ELEMENT | cut -f1 -d"+";)
   done
- 
+
+  if [[ $LCM_STATE = "RUNNING" ]]; then
+    onevm resume $VMID;
+	if [ $LOG_FILE_IN ]; then
+      echo "["$(date +"%F-%T")"] Resume VM ID" $VMID" ." >> $LOG_FILE;	  
+    else
+      if [ $VERBOSE ]; then echo "["$(date +"%F-%T")"] Resume VM ID" $VMID"."; fi
+    fi
+  fi
+  
   for DISK_ELEMENT in ${DISK_LIST[@]}; do
     while read SNAP BACKUP_SNAP; do 
      if [ $LOG_FILE_IN ]; then

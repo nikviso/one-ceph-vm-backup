@@ -49,7 +49,7 @@ if($backup_path != nil)
     TEMPLATE = File.read($backup_path + "/vm.xml") 
 else
     puts "Path to backup directory is empty"
-	exit -1	
+    exit -1	
 end
 
 client = Client.new(CREDENTIALS, ENDPOINT)
