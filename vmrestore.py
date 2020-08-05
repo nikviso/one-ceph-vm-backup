@@ -46,7 +46,7 @@ def disk_parse_XML(root, bkp_files_dir, temp_template):
         temp_template.write('" ]\r\n')	
         for image_filename in os.listdir(bkp_files_dir):
             if image_filename.startswith('one-' + image_id):
-                 cmd = ('oneimage create -d ' + datastore_id+' --name '+image+' --type DATABLOCK --size ' +
+                 cmd = ('oneimage create -d ' + datastore_id + ' --name ' + image + ' --type DATABLOCK --size ' +
                          str(int(image_size)/1024) + 'G' + ' --prefix sd --driver raw --path ' + bkp_files_dir + '/' + image_filename + ' >/dev/null 2>&1')
                  os.system(cmd) 				 
 #                 print cmd
