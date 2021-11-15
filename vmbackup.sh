@@ -154,12 +154,12 @@ for VM_ELEMENT in "${VM_LIST[@]}"; do
         echo "["$(date +"%F-%T")"] PERSISTENT: "$PERSISTENT >> $LOG_FILE;
       else
 	   if [ $VERBOSE ]; then 
-        echo "["$(date +"%F-%T")"] ========>";	  
-        echo "["$(date +"%F-%T")"] IMAGE: "$IMAGE;   
-        echo "["$(date +"%F-%T")"] IMAGE_ID: "$IMAGE_ID; 	 
-        echo "["$(date +"%F-%T")"] TYPE: "$TYPE;	 
-        echo "["$(date +"%F-%T")"] SOURCE: "$SOURCE;
-        echo "["$(date +"%F-%T")"] PERSISTENT: "$PERSISTENT;
+             echo "["$(date +"%F-%T")"] ========>";	  
+             echo "["$(date +"%F-%T")"] IMAGE: "$IMAGE;   
+             echo "["$(date +"%F-%T")"] IMAGE_ID: "$IMAGE_ID; 	 
+             echo "["$(date +"%F-%T")"] TYPE: "$TYPE;	 
+             echo "["$(date +"%F-%T")"] SOURCE: "$SOURCE;
+             echo "["$(date +"%F-%T")"] PERSISTENT: "$PERSISTENT;
 	   fi	
       fi 
 
